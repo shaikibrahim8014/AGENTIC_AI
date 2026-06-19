@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Skill2Salary turns career skills into explainable Indian salary insights." />
+  <title>Skill2Salary | Career Intelligence</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <canvas id="network" aria-hidden="true"></canvas>
+  <div class="aurora aurora-one"></div><div class="aurora aurora-two"></div><div class="aurora aurora-three"></div>
+  <div class="mesh-gradient" aria-hidden="true"></div>
+  <div class="scan-grid" aria-hidden="true"></div>
+
+  <main id="app">
+    <section id="authView" class="auth-shell">
+      <div class="auth-story">
+        <a class="brand" href="#"><span class="brand-mark">S2S</span><span>Skill2Salary</span></a>
+        <div class="auth-message">
+          <p class="eyebrow">CAREER INTELLIGENCE FOR INDIA</p>
+          <h1>Know your worth.<br /><span>Build what matters.</span></h1>
+          <p>Turn your experience, resume, and skills into an explainable salary forecast and a practical plan for your next career move.</p>
+          <div class="benefit-list">
+            <div><span>01</span><p><strong>Resume intelligence</strong><small>See skill gaps and actionable ATS improvements.</small></p></div>
+            <div><span>02</span><p><strong>Multi-model forecasting</strong><small>Compare Linear Regression, Decision Tree, Random Forest, Gradient Boosting, Neural Network, and the final ensemble.</small></p></div>
+          <div><span>03</span><p><strong>SalarAI Guide chatbot</strong><small>Ask about salary, resume, setup, features, and how the platform works.</small></p></div>
+          </div>
+        </div>
+        <p class="auth-foot">Private by design. Your account stays on this local installation.</p>
+      </div>
+
+      <div class="auth-panel">
+        <div class="glass auth-card">
+          <div class="mobile-brand"><span class="brand-mark">S2S</span><strong>Skill2Salary</strong></div>
+          <div class="auth-tabs" role="tablist">
+            <button class="auth-tab active" data-auth="login" type="button">Sign in</button>
+            <button class="auth-tab" data-auth="signup" type="button">Create account</button>
+          </div>
+          <div id="loginCopy" class="auth-heading"><h2>Welcome back</h2><p>Sign in to continue your career analysis.</p></div>
+          <div id="signupCopy" class="auth-heading hidden"><h2>Create your account</h2><p>Start building your personal salary profile.</p></div>
+          <form id="authForm">
+            <label>Username<input id="usernameInput" autocomplete="username" minlength="3" maxlength="32" placeholder="Enter your username" required /></label>
+            <label>Password
+              <span class="password-field"><input id="passwordInput" type="password" autocomplete="current-password" minlength="8" placeholder="Enter your password" required /><button id="togglePassword" type="button" aria-label="Show password">Show</button></span>
+            </label>
+            <p id="authError" class="form-error" role="alert"></p>
+            <button id="authSubmit" class="primary wide" type="submit">Sign in</button>
+          </form>
+          <p id="authSwitch" class="auth-switch">New to Skill2Salary? <button type="button" data-switch-auth="signup">Create an account</button></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboardView" class="dashboard hidden">
+      <aside class="sidebar glass">
+        <div>
+          <div class="brand-row"><span class="brand-mark small">S2S</span><div><strong>Skill2Salary</strong><small>Career Intelligence</small></div></div>
+          <nav aria-label="Primary navigation">
+            <button class="nav-btn active" data-panel="overview"><span>OV</span>Overview</button>
+            <button class="nav-btn" data-panel="resume"><span>AI</span>Resume AI</button>
+            <button class="nav-btn" data-panel="salary"><span>INR</span>Salary Lab</button>
+            <button class="nav-btn" data-panel="roadmap"><span>GO</span>Career Roadmap</button>
+          </nav>
+        </div>
+        <div class="account-block"><div class="avatar" id="userAvatar">U</div><div><strong id="sidebarUser">User</strong><small>Signed in</small></div><button id="logoutBtn" title="Sign out">Exit</button></div>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar"><div><p class="eyebrow">SKILL TO SALARY</p><h2 id="pageTitle">Your career overview</h2><p id="welcomeText" class="muted"></p></div><button id="mobileMenu" class="icon-btn" aria-label="Toggle menu">Menu</button></header>
+
+        <section id="overview" class="panel active-panel">
+          <article class="hero-card glass"><div><span class="status-pill">ML ensemble ready</span><h3>Make your next career move with evidence.</h3><p>Complete your salary profile to compare model estimates, understand the strongest salary drivers, and test new skills.</p><button class="primary jump-btn" data-panel="salary">Build my salary profile</button></div><div class="hero-orb"><span>INR</span><i></i><i></i></div></article>
+          <div class="section-title"><div><p class="eyebrow">YOUR WORKSPACE</p><h3>Everything you need to move forward</h3></div></div>
+          <div class="feature-grid">
+            <button class="feature-card glass jump-btn" data-panel="resume"><span class="feature-icon violet">AI</span><strong>Resume AI</strong><p>Extract skills, measure ATS readiness, and get targeted improvements.</p><b>Analyze resume -></b></button>
+            <button class="feature-card glass jump-btn" data-panel="salary"><span class="feature-icon cyan">INR</span><strong>Salary Lab</strong><p>Get an ensemble salary prediction in Indian LPA with model transparency.</p><b>Predict salary -></b></button>
+            <button class="feature-card glass jump-btn" data-panel="roadmap"><span class="feature-icon pink">90</span><strong>Career Roadmap</strong><p>Turn missing role skills into a focused 90-day execution plan.</p><b>View roadmap -></b></button>
+          </div>
+          <article class="glass model-strip"><div><p class="eyebrow">HOW PREDICTIONS WORK</p><h3>Five ML models. One final salary.</h3></div><div class="model-pills"><span>Linear Regression</span><span>Decision Tree</span><span>Random Forest</span><span>Gradient Boosting</span><span>Neural Network</span><span class="accent">Weighted Ensemble</span></div></article>
+        </section>
+
+        <section id="resume" class="panel">
+          <div class="panel-heading"><div><p class="eyebrow">RESUME INTELLIGENCE</p><h3>Make every line work harder</h3><p>Paste resume text to discover skills, role alignment, and high-impact improvements.</p></div></div>
+          <div class="two-col resume-grid">
+            <article class="glass card"><div class="card-head"><h4>Resume content</h4><button id="sampleBtn" class="text-btn">Use sample</button></div><textarea id="resumeText" placeholder="Paste your resume text here. Include experience, projects, skills, achievements, and links..."></textarea><div class="resume-actions"><label class="file-btn">Load .txt<input id="resumeFile" type="file" accept=".txt,.md,text/plain" /></label><button id="analyzeBtn" class="primary">Analyze resume</button></div></article>
+            <article class="glass card score-card"><div class="card-head"><h4>Resume health</h4><span id="resumeStatus" class="status-pill subtle">Waiting for resume</span></div><div class="score-layout"><div class="score-ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50"></circle><circle id="atsRing" cx="60" cy="60" r="50"></circle></svg><div><strong id="atsScore">0</strong><span>ATS score</span></div></div><div><p class="muted">Role match</p><strong id="roleMatch" class="large-value">0%</strong><p id="skillSummary" class="muted">No skills detected yet.</p></div></div><h5>Detected skills</h5><div id="skillCloud" class="skill-cloud"><span class="empty-chip">Your skills will appear here</span></div></article>
+          </div>
+          <article class="glass card"><div class="card-head"><h4>Priority improvements</h4><span class="muted">Personalized actions</span></div><div id="resumeTips" class="tips-grid"><p class="empty-state">Analyze your resume to receive targeted recommendations.</p></div></article>
+        </section>
+
+        <section id="salary" class="panel">
+          <div class="panel-heading"><div><p class="eyebrow">INDIAN SALARY FORECAST</p><h3>Build your salary profile</h3><p>Tell us about your career. The final estimate always comes from the weighted ensemble.</p></div></div>
+          <div class="salary-layout">
+            <form id="salaryForm" class="glass card profile-form">
+              <div class="card-head"><h4>Your information</h4><span class="required-note">All values in India</span></div>
+              <div class="form-grid">
+                <label>Target role<select id="roleInput"></select></label>
+                <label>Experience (years)<input id="experienceInput" type="number" min="0" max="25" step="0.5" value="3" required /></label>
+                <label>Highest education<select id="educationInput"><option>Diploma</option><option selected>Bachelor's</option><option>Master's</option><option>PhD</option></select></label>
+                <label>City category<select id="cityInput"><option>Tier 3</option><option selected>Tier 2</option><option>Tier 1</option></select></label>
+                <label>Industry<select id="industryInput"><option>Services</option><option>SaaS</option><option>FinTech</option><option>E-commerce</option><option>Product</option></select></label>
+                <label>Current salary (LPA)<input id="currentLpaInput" type="number" min="0" max="100" step="0.1" value="6" required /></label>
+              </div>
+              <fieldset><legend>Your current skills</legend><div id="salarySkills" class="check-grid"></div></fieldset>
+              <button class="primary wide" type="submit">Generate salary prediction</button>
+              <p id="predictionError" class="form-error"></p>
+            </form>
+
+            <div id="salaryResults" class="results-stack">
+              <article class="glass card empty-results"><span class="feature-icon cyan">INR</span><h4>Your forecast will appear here</h4><p>Complete the profile to see your estimated salary, range, confidence, and model analysis.</p></article>
+            </div>
+          </div>
+
+          <div id="analysisArea" class="hidden analysis-area">
+            <div class="chart-grid"><article class="glass card"><div class="card-head"><h4>Salary growth outlook</h4><span>LPA</span></div><canvas id="growthChart" width="720" height="320"></canvas></article><article class="glass card"><div class="card-head"><h4>Skill impact</h4><span>Potential uplift</span></div><canvas id="skillChart" width="720" height="320"></canvas></article></div>
+            <article class="glass card what-if"><div><p class="eyebrow">WHAT-IF ANALYSIS</p><h4>What could your next skill unlock?</h4><p>Select skills you plan to learn and compare the modeled salary change.</p></div><div id="whatIfSkills" class="check-grid"></div><button id="whatIfBtn" class="primary">Calculate future salary</button><div id="whatIfResult" class="what-if-result hidden"></div></article>
+            <details class="glass advanced"><summary><div><span>Advanced Analysis</span><small>Model predictions, weights, and evaluation metrics</small></div><b>+</b></summary><div class="advanced-body"><canvas id="modelChart" width="1000" height="330"></canvas><div id="modelTable" class="table-wrap"></div></div></details>
+            <p id="dataDisclaimer" class="data-note"></p>
+          </div>
+        </section>
+
+        <section id="roadmap" class="panel">
+          <div class="panel-heading"><div><p class="eyebrow">90-DAY PLAN</p><h3>Your focused career roadmap</h3><p>Generated from your target role, resume strengths, and missing skills.</p></div></div>
+          <div id="roadmapList" class="roadmap-list"></div>
+        </section>
+      </section>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+  <section id="chatWidget" class="chat-widget" aria-label="Skill2Salary chatbot">
+    <button id="chatToggle" class="chat-toggle" type="button"><span>AI</span><b>SalarAI Guide</b></button>
+    <div id="chatPanel" class="chat-panel glass hidden">
+      <div class="chat-head">
+        <div><strong>Your career assistant</strong><small>Ask about salary, resume, models, setup, or this website.</small></div>
+        <button id="chatClose" type="button" aria-label="Close chatbot">Close</button>
+      </div>
+      <div id="chatMessages" class="chat-messages">
+        <div class="bot-message">Hi, I am SalarAI Guide. Ask me how salary prediction, Resume AI, What-If Analysis, models, login, setup, or this website works.</div>
+      </div>
+      <form id="chatForm" class="chat-form">
+        <input id="chatInput" placeholder="Ask about this website..." autocomplete="off" />
+        <button class="primary" type="submit">Send</button>
+      </form>
+      <div class="chat-suggestions">
+        <button type="button">How is salary predicted?</button>
+        <button type="button">What does Resume AI check?</button>
+        <button type="button">How do I run this project?</button>
+      </div>
+    </div>
+  </section>
+  <script src="assets/app.js"></script>
+</body>
+</html>
